@@ -231,9 +231,7 @@ const Dashbord = () => {
       <Row>
         <Col md="12" className="mb-4 mt-1">
           <div className="d-flex flex-wrap justify-content-between align-items-center">
-            <h4 className="font-weight-bold text-center">
-              sofishewa Garment Enterprise
-            </h4>
+            <h4 className="font-weight-bold text-center">qrcod read</h4>
 
             {/* <div className="form-group mb-0 vanila-daterangepicker d-flex flex-row">
                         <div className="date-icon-set">
@@ -261,7 +259,7 @@ const Dashbord = () => {
           </div>
         </Col>
 
-        <Row>
+        {/* <Row>
           <Col md="4">
             <Card>
               <Card.Img variant="top" src={sofi} alt="Product Image" />
@@ -338,7 +336,7 @@ const Dashbord = () => {
               </Card.Body>
             </Card>
           </Col>
-        </Row>
+        </Row> */}
         {/* <Col lg="8" md="12">
                 <Row>
                     <Col md="4">
@@ -818,4 +816,4 @@ const Dashbord = () => {
   );
 };
 
-export default Dashbor
+export default Dashbord;

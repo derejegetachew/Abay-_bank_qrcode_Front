@@ -56,7 +56,7 @@ const  HeaderStyle1 =(props) =>{
                         <Dropdown as="li" className="nav-item nav-icon"> 
                             <Dropdown.Toggle as={Button} href="#" variant=" search-toggle" id="notification-dropdown" aria-haspopup="true" aria-expanded="false" >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" className="h-6 w-6 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                                    {/* <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /> */}
                                 </svg>
                                 <span className="bg-primary"></span>
                             </Dropdown.Toggle>
@@ -69,7 +69,7 @@ const  HeaderStyle1 =(props) =>{
                                             </Form.Group>
                                             </Form> */}
                             
-                                <Card className="shadow-none m-0 border-0">
+                                {/* <Card className="shadow-none m-0 border-0">
                                     <div className="p-3 card-header-border">
                                         <h6 className="text-center">
                                             Notifications
@@ -197,10 +197,10 @@ const  HeaderStyle1 =(props) =>{
                                     <div className="card-footer text-muted p-3">
                                         <p className="mb-0 text-primary text-center font-weight-bold">Show all notifications</p>
                                     </div>
-                                </Card>
+                                </Card> */}
                             </Dropdown.Menu>
                         </Dropdown>                        
-                        <Dropdown as="li" className="nav-item nav-icon">
+                        {/* <Dropdown as="li" className="nav-item nav-icon">
                             <Dropdown.Toggle  as={Button} href="#" variant=" search-toggle" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src={flag1} className="img-fluid rounded-circle" alt="user" style={{height: "30px", minWidth: "30px", width: "30px"}}/>
                             <span className="bg-primary"></span>
@@ -276,7 +276,7 @@ const  HeaderStyle1 =(props) =>{
                                     <Link to="/auth/sign-in">Logout</Link>
                                 </Dropdown.Item>
                             </Dropdown.Menu>
-                        </Dropdown>
+                        </Dropdown> */}
                     </Nav>                     
                 </Navbar.Collapse> 
             </div>
