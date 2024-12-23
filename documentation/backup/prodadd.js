@@ -23,7 +23,7 @@ const Productadd = () => {
   const [qrCodeData, setQrCodeData] = useState("");
   const qrCodeRef = useRef(); // Reference for QR code div
   const mlkamut =
-    "00020101021128500014AbaYMvbLpXak0m0108ABAYETAA021610210100041360175204541153032305802ET5917ABENEZER SHIFERAW6011Addis Ababa8012for purchase851700061233650103112630456F7";
+    "00020101021228320008ABAYETAA011613310199032900145204541153032305802ET5923BIRUK HAILU WOLDETSADIK6011Addis Ababa6304E4F5";
   // Function to handle "Generate" button click
   const handleGenerate = (e) => {
     e.preventDefault();
@@ -216,97 +216,29 @@ const Productadd = () => {
         <Col lg="6">
           <Card>
             <Card.Body>
-              {/* <h5 className="font-weight-bold mb-3">
-                Abay Bank QrCode to pay{" "}
-              </h5> */}
+              <h5 className="font-weight-bold mb-3">QR Code Preview</h5>
               {qrCodeData && (
                 <div
                   ref={qrCodeRef}
                   style={{
                     display: "inline-block",
                     padding: "1px",
-                    borderRadius: "10px",
-                    backgroundColor: "white",
-                    textAlign: "center", // Centering the QR code and its elements
-                    width: "70%", // Ensure full width to center content
                     border: "6px solid #005580",
+                    borderRadius: "10px",
                   }}
                 >
-                  {/* Image and Text section */}
-                  {/* <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      // Align image and text vertically centered
-                      // justifyContent: "center", // Center the content horizontally
-                      marginLeft: "l0px",
-                      marginBottom: "10px",
-                    }}
-                  > */}
-                    {/* Image on the left side */}
-                    {/* <img
-                      src="/image/abay_logo.png" // Path to your image
-                      alt="Abay Bank Logo"
-                      style={{
-                        width: "60px",
-                        height: "50px",
-                        marginRight: "10px",
-                      }} // Adjust size and margin as needed
-                    /> */}
-                    {/* Text next to the image */}
-                    <div
-                      style={{
-                        fontSize: "30px",
-                        fontWeight: "bold",
-                        color: "#004461", // Dark blue color
-                        // textDecoration: "underline", // Underline the text
-                      }}
-                    >
-                      Abay Bank 
-                    </div>
-                  {/* </div> */}
-
-                  {/* QR Code */}
+                  <div></div>
                   <QRCode
                     value={mlkamut}
-                    logoImage="/image/abay-logo.png" // Path to the logo image inside the QR code
+                    logoImage="/image/abay-logo.png" //e this is the correct path for the logo
                     logoWidth={50}
                     bgColor="#FFFFFF"
                     fgColor="#004461"
                     size={220}
-                    
                     removeQrCodeBehindLogo={true}
                   />
-
-                  {/* Static HTML text below the QR code */}
-                  <div
-                    style={{
-                      marginTop: "10px",
-                      fontSize: "16px",
-                      fontWeight: "bold",
-                      color: "#004461",
-                      textDecoration: "underline", // Underline the text
-                    }}
-                  >
-                    SCAN TO PAY
-                  </div>
-
-                  {/* Additional static text below the "SCAN TO PAY" text */}
-                  <div
-                    style={{
-                      marginTop: "4px",
-                      fontSize: "14px",
-                      fontWeight: "bold",
-                      // color: "#004461",
-                    }}
-                  >
-                    ለማንኛዉም ጥያቄ እና አስተያየት <br/>ወደ 8834 ነፃ የጥሪ መስመር በመደወል <br/>የደንበኞች ግንኙነት
-                    ማዕከላችንን ያግኙ
-                  </div>
                 </div>
               )}
-
               {qrCodeData && (
                 <div className="mt-3">
                   <Button

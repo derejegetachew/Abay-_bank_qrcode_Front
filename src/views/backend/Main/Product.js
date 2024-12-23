@@ -1,183 +1,204 @@
-import React from "react";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import React, { useState, useRef, useEffect } from "react";
+import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import Card from "../../../components/Card";
-import { Link } from "react-router-dom";
+import { QRCode } from "react-qrcode-logo";
+import { toPng } from "html-to-image";
+import jsPDF from "jspdf";
+import axios from "axios";
+import { generateEMVQRCode } from "../../../services/qr-generator"; // Adjust the path as needed
 
-const Productadd = () => {
+const Products = () => {
+  const [accountNumber, setAccountNumber] = useState("");
+  const [merchantData, setMerchantData] = useState(""); // Start with null
+  const [qrCodeData, setQrCodeData] = useState("");
+  const [error, setError] = useState("");
+  const [step, setStep] = useState(1); // Step 1: Enter Account, Step 2: Display Merchant Info
+
+  const qrCodeRef = useRef();
+
+  // useEffect to log merchant data whenever it changes
+  useEffect(() => {
+    if (merchantData) {
+      console.log("Updated merchant data:", merchantData); // This will log when merchantData changes
+    }
+  }, [merchantData]);
+
+  // Fetch merchant details via API
+  const handleAccountSubmit = async (e) => {
+    e.preventDefault();
+
+    if (accountNumber.trim()) {
+      setError(""); // Reset previous errors
+      try {
+        const response = await axios.post(
+          "http://localhost:3000/api/getaccount",
+          { account_number: accountNumber }
+        );
+
+        console.log("Response data:", response.data); // Log the full response
+
+        // Set the merchant data based on the API response
+        setMerchantData(response.data);
+        console.log(merchantData);
+        // Move to the next step (display merchant info)
+        setStep(2);
+      } catch (err) {
+        setError(
+          err.response?.data?.message || "Error fetching merchant details."
+        );
+      }
+    } else {
+      setError("Account number is required.");
+    }
+  };
+
+  // Generate QR Code using `generateEMVQRCode`
+  const handleGenerate = () => {
+    if (!merchantData) {
+      setError("Merchant data is missing.");
+      return;
+    }
+
+    try {
+      const qrFields = [
+        { id: "00", value: "01" }, // Payload Format Indicator
+        { id: "01", value: "12" }, // Point of Initiation Method (Dynamic)
+        {
+          id: "28", // Merchant Account Information
+          value: Object.entries(merchantData.merchantAccountInfo || {}).map(
+            ([tag, value]) => ({ id: tag, value })
+          ),
+        },
+        { id: "52", value: merchantData.merchantCategoryCode || "0000" },
+        { id: "53", value: merchantData.transactionCurrency || "ETB" },
+        { id: "58", value: merchantData.countryCode || "ET" },
+        { id: "59", value: merchantData.merchantName || "Unknown Merchant" },
+        { id: "60", value: merchantData.merchantCity || "Unknown City" },
+      ];
+
+      if (merchantData.transactionAmount) {
+        qrFields.push({ id: "54", value: merchantData.transactionAmount });
+      }
+
+      const qrString = generateEMVQRCode(qrFields);
+      console.log("Generated QR String:", qrString); // Log generated QR code string
+      setQrCodeData(qrString); // Set QR code data
+    } catch (error) {
+      setError("Failed to generate QR code.");
+    }
+  };
+
+  // Download QR code as image
+  const handleDownloadImage = async () => {
+    if (qrCodeRef.current) {
+      const image = await toPng(qrCodeRef.current);
+      const link = document.createElement("a");
+      link.href = image;
+      link.download = "QRCode.png";
+      link.click();
+    }
+  };
+
+  // Download QR code as PDF
+  const handleDownloadPDF = async () => {
+    if (qrCodeRef.current) {
+      const image = await toPng(qrCodeRef.current);
+      const pdf = new jsPDF();
+      pdf.addImage(image, "PNG", 10, 10, 180, 180);
+      pdf.save("QRCode.pdf");
+    }
+  };
+
   return (
-    <>
-      <Container fluid>
-        <Row>
-          <Col lg="12">
-            <div className="d-flex flex-wrap align-items-center justify-content-between">
-              <div className="d-flex align-items-center justify-content-between">
-                <nav aria-label="breadcrumb">
-                  <ol className="breadcrumb p-0 mb-0">
-                    <li className="breadcrumb-item">
-                      <Link to="/product"></Link>
-                    </li>
-                  </ol>
-                </nav>
-              </div>
-              {/* <Link to="/product" className="btn btn-primary btn-sm d-flex align-items-center justify-content-between ml-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 20 20" fill="currentColor">
-                            <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
-                        </svg>
-                        <span className="ml-2">Back</span>
-                    </Link> */}
+    <Container fluid>
+      {step === 1 ? (
+        <Form onSubmit={handleAccountSubmit}>
+          <h3>Enter Bank Account</h3>
+          <Form.Group controlId="formBankAccount">
+            <div className="col-md-3 mb-3">
+              <Form.Label>Bank Account Number</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter account number"
+                value={accountNumber}
+                onChange={(e) => setAccountNumber(e.target.value)}
+                required
+                style={{ border: "1px solid #005580" }}
+              />
             </div>
-          </Col>
-          <Col lg="12" className="mb-3 d-flex justify-content-between">
-            <h4 className="font-weight-bold d-flex align-items-center">
-              New Qrcode Generate
-            </h4>
-          </Col>
-          <Col lg="12">
+          </Form.Group>
+          <Button
+            type="submit"
+            style={{ backgroundColor: "#005580", borderColor: "#005580" }}
+          >
+            Submit
+          </Button>
+          {error && <p className="text-danger">{error}</p>}
+        </Form>
+      ) : (
+        <Row>
+          <Col lg="6">
             <Card>
               <Card.Body>
-                <h5 className="font-weight-bold mb-3">Basic Information</h5>
+                <h5 className="font-weight-bold mb-3">Merchant Information</h5>
                 <Form className="row g-3">
                   <div className="col-md-6 mb-3">
-                    <Form.Label
-                      htmlFor="Text1"
-                      className="form-label font-weight-bold text-muted text-uppercase"
-                    >
-                      Merchant Account Information
-                    </Form.Label>
+                    <Form.Label>Merchant Account</Form.Label>
                     <Form.Control
                       type="text"
-                      className="form-control"
-                      id="Text1"
-                      placeholder="Enter Merchant Account Information"
+                      readOnly
+                      value={merchantData?.merchantAccount || "N/A"} // Fallback to "N/A"
                     />
                   </div>
                   <div className="col-md-6 mb-3">
-                    <Form.Label
-                      htmlFor="Text2"
-                      className="form-label font-weight-bold text-muted text-uppercase"
-                    >
-                      Merchant Tin Number
-                    </Form.Label>
+                    <Form.Label>Merchant Tin</Form.Label>
                     <Form.Control
                       type="text"
-                      className="form-control"
-                      id="Text2"
-                      placeholder="Enter Merchant Tin Number"
+                      readOnly
+                      value={merchantData?.merchantTin || "N/A"} // Fallback to "N/A"
                     />
                   </div>
-                  <div className="col-md-6 mb-3">
-                    <Form.Label
-                      htmlFor="Text3"
-                      className="form-label font-weight-bold text-muted text-uppercase"
-                    >
-                      Product Sku
-                    </Form.Label>
-                    <Form.Control
-                      type="text"
-                      className="form-control"
-                      id="Text3"
-                      placeholder="Enter Product SKU"
-                    />
-                  </div>
-                  <div className="col-md-6 mb-3">
-                    <Form.Label
-                      htmlFor="Text4"
-                      className="form-label font-weight-bold text-muted text-uppercase"
-                    >
-                      manufacturer
-                    </Form.Label>
-                    <Form.Label
-                      type="text"
-                      className="form-control"
-                      id="Text4"
-                      placeholder="Enter Manufacturer"
-                    />
-                  </div>
-                  <div className="col-md-6 mb-3">
-                    <Form.Label
-                      htmlFor="Text5"
-                      className="form-label font-weight-bold text-muted text-uppercase"
-                    >
-                      Quantity
-                    </Form.Label>
-                    <Form.Control
-                      type="text"
-                      className="form-control"
-                      id="Text5"
-                      placeholder="Enter Quantity"
-                    />
-                  </div>
-                  <div className="col-md-6 mb-3">
-                    <Form.Label
-                      htmlFor="Text6"
-                      className="form-label font-weight-bold text-muted text-uppercase"
-                    >
-                      Price
-                    </Form.Label>
-                    <Form.Control
-                      type="text"
-                      className="form-control"
-                      id="Text6"
-                      placeholder="Enter Price"
-                    />
-                  </div>
-                  <div className="col-md-6 mb-3">
-                    <Form.Label
-                      htmlFor="Text7"
-                      className="form-label font-weight-bold text-muted text-uppercase"
-                    >
-                      Tax
-                    </Form.Label>
-                    <Form.Control
-                      type="text"
-                      className="form-control"
-                      id="Text7"
-                      placeholder="Enter Tax"
-                    />
-                  </div>
-                  <div className="col-md-12 mb-3">
-                    <Form.Label
-                      htmlFor="Text8"
-                      className="form-label font-weight-bold text-muted text-uppercase"
-                    >
-                      Tag
-                    </Form.Label>
-                    <select
-                      defaultValue="1"
-                      id="Text8"
-                      className="multipleSelect2  form-control choicesjs"
-                      multiple={false}
-                    >
-                      <option value="1">Excellent</option>
-                      <option value="2">Very Good</option>
-                      <option value="3">Good</option>
-                      <option value="4">Not Bad</option>
-                      <option value="5">Bad</option>
-                      <option value="6">Very Bad</option>
-                    </select>
-                  </div>
-                  <div className="col-md-12 mb-3">
-                    <Form.Label
-                      htmlFor="Text9"
-                      className="form-label font-weight-bold text-muted text-uppercase"
-                    >
-                      Description
-                    </Form.Label>
-                    <Form.Control
-                      as="textarea"
-                      id="Text9"
-                      rows="2"
-                      placeholder="Enter Description"
-                    />
-                  </div>
+                  <Button
+                    style={{
+                      backgroundColor: "#005580",
+                      borderColor: "#005580",
+                    }}
+                    onClick={handleGenerate}
+                  >
+                    Generate QR Code
+                  </Button>
                 </Form>
               </Card.Body>
             </Card>
-            <Card></Card>
+          </Col>
+
+          <Col lg="6">
+            <Card>
+              <Card.Body>
+                <h5 className="font-weight-bold mb-3">QR Code Preview</h5>
+                {qrCodeData && (
+                  <div ref={qrCodeRef} style={{ padding: "10px" }}>
+                    <QRCode value={qrCodeData} />
+                  </div>
+                )}
+                {qrCodeData && (
+                  <div className="mt-3">
+                    <Button
+                      style={{ marginRight: "10px" }}
+                      onClick={handleDownloadImage}
+                    >
+                      Download as Image
+                    </Button>
+                    <Button onClick={handleDownloadPDF}>Download as PDF</Button>
+                  </div>
+                )}
+              </Card.Body>
+            </Card>
           </Col>
         </Row>
-      </Container>
-    </>
+      )}
+    </Container>
   );
 };
-export default Productadd;
+
+export default Products;
