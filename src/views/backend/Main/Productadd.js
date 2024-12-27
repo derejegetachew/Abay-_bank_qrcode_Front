@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import Card from "../../../components/Card";
-//import QRCode from "react-qr-code";
-import { QRCode } from "react-qrcode-logo";
+import QRCode from "react-qr-code";
+// import { QRCode } from "react-qrcode-logo";
 import { toPng } from "html-to-image"; // Import html-to-image
 import jsPDF from "jspdf"; // Import jsPDF
 
@@ -23,8 +23,7 @@ const Productadd = () => {
   const [qrCodeData, setQrCodeData] = useState("");
   const qrCodeRef = useRef(); // Reference for QR code div
   const mlkamut =
-    "00020101021128500014AbaYMvbLpXak0m0108ABAYETAA021610210100041360175204541153032305802ET5917ABENEZER SHIFERAW6011Addis Ababa8012for purchase851700061233650103112630456F7";
-  // Function to handle "Generate" button click
+    "00020101021128500014AbaYMvbLpXak0m0108ABAYETAA021610210100041360175204541153032305802ET5917ABENEZER SHIFERAW6011Addis Ababa8012for purchase851700061233650103112540450006304C11B";
   const handleGenerate = (e) => {
     e.preventDefault();
     const data = {
@@ -244,8 +243,8 @@ const Productadd = () => {
                       marginBottom: "10px",
                     }}
                   > */}
-                    {/* Image on the left side */}
-                    {/* <img
+                  {/* Image on the left side */}
+                  {/* <img
                       src="/image/abay_logo.png" // Path to your image
                       alt="Abay Bank Logo"
                       style={{
@@ -254,29 +253,29 @@ const Productadd = () => {
                         marginRight: "10px",
                       }} // Adjust size and margin as needed
                     /> */}
-                    {/* Text next to the image */}
-                    <div
-                      style={{
-                        fontSize: "30px",
-                        fontWeight: "bold",
-                        color: "#004461", // Dark blue color
-                        // textDecoration: "underline", // Underline the text
-                      }}
-                    >
-                      Abay Bank 
-                    </div>
+                  {/* Text next to the image */}
+                  <div
+                    style={{
+                      fontSize: "30px",
+                      fontWeight: "bold",
+                      color: "#004461", // Dark blue color
+                      // textDecoration: "underline", // Underline the text
+                    }}
+                  >
+                    Abay Bank
+                  </div>
                   {/* </div> */}
 
                   {/* QR Code */}
                   <QRCode
                     value={mlkamut}
                     logoImage="/image/abay-logo.png" // Path to the logo image inside the QR code
-                    logoWidth={50}
+                    logoWidth={30}
                     bgColor="#FFFFFF"
                     fgColor="#004461"
                     size={220}
-                    
-                    removeQrCodeBehindLogo={true}
+                    // removeQrCodeBehindLogo={true}
+                    level="L"
                   />
 
                   {/* Static HTML text below the QR code */}
@@ -301,8 +300,9 @@ const Productadd = () => {
                       // color: "#004461",
                     }}
                   >
-                    ለማንኛዉም ጥያቄ እና አስተያየት <br/>ወደ 8834 ነፃ የጥሪ መስመር በመደወል <br/>የደንበኞች ግንኙነት
-                    ማዕከላችንን ያግኙ
+                    ለማንኛዉም ጥያቄ እና አስተያየት <br />
+                    ወደ 8834 ነፃ የጥሪ መስመር በመደወል <br />
+                    የደንበኞች ግንኙነት ማዕከላችንን ያግኙ
                   </div>
                 </div>
               )}
