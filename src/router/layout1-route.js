@@ -4,65 +4,65 @@ import {TransitionGroup,CSSTransition} from "react-transition-group";
 //main
 import Dashbord from '../views/backend/Main/Dashbord'
 // Calendar
-import Calendar from '../views/backend/Main/Calendar';
+// import Calendar from '../views/backend/Main/Calendar';
 
 // Customer
-import Customer from '../views/backend/Main/Customer';
-import Customeradd from '../views/backend/Main/Customeradd';
-import Customerview from '../views/backend/Main/Cutomerview';
-import Customeredit from '../views/backend/Main/Customeredit';
+// import Customer from '../views/backend/Main/Customer';
+// import Customeradd from '../views/backend/Main/Customeradd';
+// import Customerview from '../views/backend/Main/Cutomerview';
+// import Customeredit from '../views/backend/Main/Customeredit';
 
 // Product
 import Product from '../views/backend/Main/Product';
 import Productadd from '../views/backend/Main/Productadd';
 
 // order
-import Order from '../views/backend/Main/Order';
-import Ordernew from '../views/backend/Main/Ordernew';
-import Orderdetails from '../views/backend/Main/Orderdetails';
+// import Order from '../views/backend/Main/Order';
+// import Ordernew from '../views/backend/Main/Ordernew';
+// import Orderdetails from '../views/backend/Main/Orderdetails';
 
 
 //App
-import UserProfile from '../views/backend/App/UserManagement/UserProfile'
-import UserAdd from '../views/backend/App/UserManagement/UserAdd'
-import UserList from '../views/backend/App/UserManagement/UserList'
-import UserPrivacySetting from '../views/backend/App/UserManagement/UserPrivacySetting'
-import UserAccountSettingList from '../views/backend/App/UserManagement/UserAccountSetting'
-import UserProfileEdit from '../views/backend/App/UserManagement/UserProfileEdit'
-import Chat  from '../views/backend/App/Chat'
-import Todo  from '../views/backend/App/Todo'
+// import UserProfile from '../views/backend/App/UserManagement/UserProfile'
+// import UserAdd from '../views/backend/App/UserManagement/UserAdd'
+// import UserList from '../views/backend/App/UserManagement/UserList'
+// import UserPrivacySetting from '../views/backend/App/UserManagement/UserPrivacySetting'
+// import UserAccountSettingList from '../views/backend/App/UserManagement/UserAccountSetting'
+// import UserProfileEdit from '../views/backend/App/UserManagement/UserProfileEdit'
+// import Chat  from '../views/backend/App/Chat'
+// import Todo  from '../views/backend/App/Todo'
 
 //Chart
-import ApexChart   from '../views/backend/Chart/ApexChart'
+// import ApexChart   from '../views/backend/Chart/ApexChart'
 
 //From
-import Checkbox from '../views/backend/Forms/FormControls/Checkbox'
-import Elements from '../views/backend/Forms/FormControls/Elements'
-import Inputs from '../views/backend/Forms/FormControls/Inputs'
-import Radio from '../views/backend/Forms/FormControls/Radio'
-import FromSwitch from '../views/backend/Forms/FormControls/Switch'
-import TextArea from '../views/backend/Forms/FormControls/TextArea'
-import Validations from '../views/backend/Forms/FormControls/Validations'
-import Datepicker from '../views/backend/Forms/Formwidget/Datepicker'
-import Fileupload from '../views/backend/Forms/Formwidget/Fileupload'
-import FormQuill from '../views/backend/Forms/Formwidget/FormQuill'
-import Select from '../views/backend/Forms/Formwidget/Select'
-import Invoiceview from '../views/backend/pages/Invoiceview';
+// import Checkbox from '../views/backend/Forms/FormControls/Checkbox'
+// import Elements from '../views/backend/Forms/FormControls/Elements'
+// import Inputs from '../views/backend/Forms/FormControls/Inputs'
+// import Radio from '../views/backend/Forms/FormControls/Radio'
+// import FromSwitch from '../views/backend/Forms/FormControls/Switch'
+// import TextArea from '../views/backend/Forms/FormControls/TextArea'
+// import Validations from '../views/backend/Forms/FormControls/Validations'
+// import Datepicker from '../views/backend/Forms/Formwidget/Datepicker'
+// import Fileupload from '../views/backend/Forms/Formwidget/Fileupload'
+// import FormQuill from '../views/backend/Forms/Formwidget/FormQuill'
+// import Select from '../views/backend/Forms/Formwidget/Select'
+// import Invoiceview from '../views/backend/pages/Invoiceview';
 
 
 //Extrapages
-import Timeline1 from '../views/backend/pages/Timeline/Timeline1'
-import Pricing1  from '../views/backend/pages/Pricing/Pricing1'
-import Invoice   from '../views/backend/pages/Invoice'
-import FAQ       from '../views/backend/pages/FAQ'
-import BlankPage from '../views/backend/pages/BlankPage'
-import TermsOfUse from '../views/backend/pages/Extrapages/TermsOfUse'
-import PrivacyPolicy from  '../views/backend/pages/Extrapages/PrivacyPolicy'
+// import Timeline1 from '../views/backend/pages/Timeline/Timeline1'
+// import Pricing1  from '../views/backend/pages/Pricing/Pricing1'
+// import Invoice   from '../views/backend/pages/Invoice'
+// import FAQ       from '../views/backend/pages/FAQ'
+// import BlankPage from '../views/backend/pages/BlankPage'
+// import TermsOfUse from '../views/backend/pages/Extrapages/TermsOfUse'
+// import PrivacyPolicy from  '../views/backend/pages/Extrapages/PrivacyPolicy'
 
 //Table
-import  BasicTable from '../views/backend/Table/BasicTable'
-import  DataTable  from '../views/backend/Table/DataTable'
-import  EditTable from '../views/backend/Table/EditTable'
+// import  BasicTable from '../views/backend/Table/BasicTable'
+// import  DataTable  from '../views/backend/Table/DataTable'
+// import  EditTable from '../views/backend/Table/EditTable'
 
 //ui
 import UiAlerts from '../views/backend/ui/UiAlerts'
@@ -110,20 +110,20 @@ const Layout1Route = () => {
                     <Route path="/" exact component={Dashbord} />
 
                     {/* App */}
-                    <Route path="/user-profile"         component={UserProfile} />
+                    {/* <Route path="/user-profile"         component={UserProfile} />
                     <Route path="/user-add"             component={UserAdd}     />
                     <Route path="/user-list"            component={UserList}  />
                     <Route path="/user-privacy-setting" component={UserPrivacySetting} />
                     <Route path="/user-account-setting" component={UserAccountSettingList} />
                     <Route path="/user-profile-edit"    component={UserProfileEdit} />
                     <Route path="/chat"                 component={Chat} />
-                    <Route path="/todo"                 component={Todo} />
+                    <Route path="/todo"                 component={Todo} /> */}
 
                     {/* Chart */}
-                    <Route path="/chart-apex"    component={ApexChart} />
+                    {/* <Route path="/chart-apex"    component={ApexChart} /> */}
 
                     {/* From  */}
-                    <Route path="/form-chechbox"      component={Checkbox} />
+                    {/* <Route path="/form-chechbox"      component={Checkbox} />
                     <Route path="/form-layout"        component={Elements} />
                     <Route path="/form-input-group"   component={Inputs} />
                     <Route path="/form-radio"         component={Radio} />
@@ -133,27 +133,27 @@ const Layout1Route = () => {
                     <Route path="/form-datepicker"    component={Datepicker} />
                     <Route path="/form-file-uploader" component={Fileupload} />
                     <Route path="/form-quill"         component={FormQuill} />
-                    <Route path="/form-select"        component={Select} />
+                    <Route path="/form-select"        component={Select} /> */}
 
                     {/* Icon */}
                     <Route path="/icon-heroicon" component={Heroicons}/>
 
                     {/* Extrapages */}
-                    <Route path="/timeline-1"       component={Timeline1} />
+                    {/* <Route path="/timeline-1"       component={Timeline1} />
                     <Route path="/pricing-1"        component={Pricing1} />
                     <Route path="/pages-invoice"    component={Invoice} />
                     <Route path="/pages-faq"        component={FAQ} />
                     <Route path="/pages-blank-page" component={BlankPage} />
                     <Route path="/terms-of-service" component={TermsOfUse} />
                     <Route path="/privacy-policy"   component={PrivacyPolicy} />
-                    <Route path="/invoice-view"     component={Invoiceview}/>
+                    <Route path="/invoice-view"     component={Invoiceview}/> */}
 
                     {/* Table */}
-                    <Route path="/tables-basic"    component={BasicTable} />
+                    {/* <Route path="/tables-basic"    component={BasicTable} />
                     <Route path="/tables-data"     component={DataTable} />
-                    <Route path="/tables-editable" component={EditTable} />
+                    <Route path="/tables-editable" component={EditTable} /> */}
 
-                    {/* Ui */}
+                    Ui
                     <Route path="/ui-alerts"         component={UiAlerts}/>
                     <Route path="/ui-avatars"        component={UiAvatars}/>
                     <Route path="/ui-badges"         component={UiBadges}/>
@@ -179,22 +179,22 @@ const Layout1Route = () => {
                     <Route path="/ui-typography"     component={UiTypography}/>
 
                     {/*Customer*/}
-                    <Route path="/customer"          component={Customer}/>
+                    {/* <Route path="/customer"          component={Customer}/>
                     <Route path="/customer-add"      component={Customeradd}/>
                     <Route path="/customer-view"     component={Customerview}/>
-                    <Route path="/customer-edit"      component={Customeredit}/>
+                    <Route path="/customer-edit"      component={Customeredit}/> */}
 
                     {/* Product */}
                     <Route path="/product"            component={Product}/>
                     <Route path="/product-add"        component={Productadd}/>
 
                     {/* Order */}
-                    <Route path="/order"              component={Order}/>
+                    {/* <Route path="/order"              component={Order}/>
                     <Route path="/order-new"          component={Ordernew}/>
-                    <Route path="/order-details"      component={Orderdetails}/>
+                    <Route path="/order-details"      component={Orderdetails}/> */}
 
                     {/* Caldenar */}
-                    <Route path="/calendar"           component={Calendar}/>
+                    {/* <Route path="/calendar"           component={Calendar}/> */}
                     
                 </Switch>
             </CSSTransition>

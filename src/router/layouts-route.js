@@ -11,5 +11,4 @@ const LayoutsRoute = props => {
         </Switch>
     )
 }
-
 export default LayoutsRoute

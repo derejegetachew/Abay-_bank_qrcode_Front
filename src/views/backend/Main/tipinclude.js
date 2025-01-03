@@ -42,30 +42,22 @@ const Products = () => {
   const handleTipValueChange = (event) => {
     setTipValue(event.target.value);
   };
+
   const handleGenerate = () => {
     if (!merchantData) {
       setError("Merchant data is missing.");
       return;
     }
-
     try {
       merchantData.merchantAccountInfo = {
         "00": "AbaYMvbLpXak0m",
         "01": "ABAYETAA",
         "02": merchantData.accountnumber,
       };
-
-      // Set the tip data based on the state
-      if (includeTip) {
-        merchantData.tip = true;
-        merchantData.tipType = tipType;
-        merchantData.tipValue = tipValue;
-      } else {
-        merchantData.tip = false; // Ensure it's not included if the checkbox is not checked
-      }
-
-      console.log(merchantData); // Check the merchant data including tip info
-
+      // merchantData.tip = true;
+      // merchantData.tipType = "fixed";
+      // merchantData.tipValue = "5";
+      console.log(merchantData);
       const qrFields = [
         { id: "00", value: "01" }, // Payload Format Indicator
         { id: "01", value: "12" }, // Point of Initiation Method (Dynamic)
@@ -88,6 +80,7 @@ const Products = () => {
 
       if (merchantData.tip) {
         if (merchantData.tipType === "fixed") {
+          // Corrected from "fixd" to "fixed"
           qrFields.push({ id: "55", value: "02" });
           qrFields.push({ id: "56", value: merchantData.tipValue });
         } else if (merchantData.tipType === "%") {
@@ -97,9 +90,8 @@ const Products = () => {
           qrFields.push({ id: "55", value: "01" });
         }
       }
-
       console.log("QR Fields:", qrFields);
-
+      // console.log(createHelloWorldString());
       const qrString = generateEMVQRCode(qrFields);
 
       console.log("Generated QR String:", qrString);

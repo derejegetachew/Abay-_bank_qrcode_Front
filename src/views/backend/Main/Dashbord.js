@@ -14,15 +14,15 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import { Card, Container, Row, Col, Dropdown } from "react-bootstrap";
 
 // img
-import product1 from "../../../assets/images/products/1.jpg";
-import product2 from "../../../assets/images/products/2.jpg";
-import product13 from "../../../assets/images/products/13.jpg";
-import product4 from "../../../assets/images/products/4.jpg";
-import user1 from "../../../assets/images/user/1.jpg";
-import user5 from "../../../assets/images/user/5.jpg";
-import user2 from "../../../assets/images/user/2.jpg";
-import user3 from "../../../assets/images/user/3.jpg";
-import sofi from "../../../assets/images/user/sofi.jpg";
+// import product1 from "../../../assets/images/products/1.jpg";
+// import product2 from "../../../assets/images/products/2.jpg";
+// import product13 from "../../../assets/images/products/13.jpg";
+// import product4 from "../../../assets/images/products/4.jpg";
+// import user1 from "../../../assets/images/user/1.jpg";
+// import user5 from "../../../assets/images/user/5.jpg";
+// import user2 from "../../../assets/images/user/2.jpg";
+// import user3 from "../../../assets/images/user/3.jpg";
+// import sofi from "../../../assets/images/user/sofi.jpg";
 const Dashbord = () => {
   // const chart1={
   //      options : {

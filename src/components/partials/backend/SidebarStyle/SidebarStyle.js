@@ -48,7 +48,10 @@ const SidebarStyle = (props) => {
   });
   return (
     <>
-      <div className={`iq-sidebar sidebar-default ${variant}`}>
+      <div
+        className={`iq-sidebar sidebar-default ${variant}`}
+        style={{ backgroundColor: "#005580" }}
+      >
         <div className="iq-sidebar-logo d-flex align-items-end justify-content-between">
           <Link to="/" className="header-logo">
             <img
@@ -87,14 +90,12 @@ const SidebarStyle = (props) => {
               className="side-menu"
               onSelect={(e) => setActiveMenu(e)}
             >
-              
               <li className="px-3 pt-3 pb-2 ">
                 <span className="text-uppercase small font-weight-bold">
                   Application
                 </span>
               </li>
 
-              
               <li
                 className={`${
                   location.pathname === "/product" ? "active" : ""
@@ -145,7 +146,6 @@ const SidebarStyle = (props) => {
                   <span className="ml-2">Test QR</span>
                 </Link>
               </li>
-             
             </Accordion>
           </nav>
           <div className="pt-5 pb-5"></div>

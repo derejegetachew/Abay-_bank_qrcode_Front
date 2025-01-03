@@ -98,6 +98,7 @@ const getQrCodeValue = async (req, res) => {
   }
 };
 
+
 // Export controller functions
 module.exports = {
   getQrCode,
