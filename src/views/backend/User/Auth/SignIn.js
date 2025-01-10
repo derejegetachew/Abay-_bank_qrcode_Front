@@ -11,6 +11,8 @@ import axios from "axios";
 // img
 import logo from "../../../../assets/images/abaybank.jpg";
 import darklogo from "../../../../assets/images/logo-dark.png";
+import { setAuthenticated } from "../../../../store/Aut/authSlice";
+import { useDispatch } from "react-redux";
 
 function mapStateToProps(state) {
   return {
@@ -24,6 +26,7 @@ const SignIn = (props) => {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,16 +40,17 @@ const SignIn = (props) => {
       return;
     }
     try {
-      // setIsLoading(true);
-      // const response = await axios.post(`http://localhost:3000/api/login`, {
-      //   username,
-      //   password,
-      // });
-      // const token = response.data.accessToken;
-      // localStorage.setItem("token", token);
-      // const decodedToken = jwtDecode(token);
-      // console.log("derejeeee", decodedToken);
-
+      setIsLoading(true);
+      const response = await axios.post(`http://localhost:3000/api/login`, {
+        username,
+        password,
+      });
+      const token = response.data.accessToken;
+      localStorage.setItem("token", token);
+      dispatch(setAuthenticated(true));
+      const decodedToken = jwtDecode(token);
+      console.log("derejeeee", decodedToken);
+      console.log("Redirecting to product page...");
       history.push("/product");
     } catch (error) {
       let message =

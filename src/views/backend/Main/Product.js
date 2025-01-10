@@ -11,6 +11,7 @@ import {
 } from "../../../services/qr-generator";
 // Adjust the path as needed
 const Products = () => {
+  console.log("welcome");
   const [accountNumber, setAccountNumber] = useState("");
   const [merchantData, setMerchantData] = useState(null); // Initially null, not "null" (string)
   const [qrCodeData, setQrCodeData] = useState("");

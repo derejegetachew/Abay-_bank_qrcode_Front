@@ -8,7 +8,7 @@ import reportWebVitals from './reportWebVitals';
 
 import { Provider } from 'react-redux';
 //reducer
-import Store from './store'
+import Store from './store/'
 
 ReactDOM.render(
   <React.Fragment>
